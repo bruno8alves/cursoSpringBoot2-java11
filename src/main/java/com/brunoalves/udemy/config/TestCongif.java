@@ -10,10 +10,12 @@ import org.springframework.context.annotation.Profile;
 
 import com.brunoalves.udemy.entities.Category;
 import com.brunoalves.udemy.entities.Order;
+import com.brunoalves.udemy.entities.OrderItem;
 import com.brunoalves.udemy.entities.Product;
 import com.brunoalves.udemy.entities.User;
 import com.brunoalves.udemy.enums.OrderStatus;
 import com.brunoalves.udemy.repositories.CategoryRepository;
+import com.brunoalves.udemy.repositories.OrderItemRepository;
 import com.brunoalves.udemy.repositories.OrderRepository;
 import com.brunoalves.udemy.repositories.ProductRepository;
 import com.brunoalves.udemy.repositories.UserRepository;
@@ -36,6 +38,9 @@ public class TestCongif implements CommandLineRunner{
 	
 	@Autowired
 	private ProductRepository productRepository;
+	
+	@Autowired
+	private OrderItemRepository orderItemRepository;
 	
 
 	@Override
@@ -73,6 +78,12 @@ public class TestCongif implements CommandLineRunner{
 		p5.getCategories().add(cat2);
 		productRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5));
 		
+		
+		OrderItem oi1 = new OrderItem(o1,p1,2,p1.getPrice());
+		OrderItem oi2 = new OrderItem(o1,p3,1,p3.getPrice());
+		OrderItem oi3 = new OrderItem(o2,p3,2,p3.getPrice());
+		OrderItem oi4 = new OrderItem(o3,p5,2,p5.getPrice());
+		orderItemRepository.saveAll(Arrays.asList(oi1,oi2,oi3,oi4));
 		
 	}
 	
